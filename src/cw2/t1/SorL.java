@@ -245,9 +245,9 @@ public class SorL extends javax.swing.JFrame {
         else{
             
             try {
-                String url ="jdbc:mysql://localhost:3306/wms";
-                String uname ="root";
-                String pass ="18765121";
+                String url = AppConfig.dbUrl();
+                String uname = AppConfig.dbUser();
+                String pass = AppConfig.dbPassword();
                 String query1 = "SELECT * FROM registration WHERE name = '"+username+"'";
                 
                 Class.forName("com.mysql.jdbc.Driver");
@@ -284,9 +284,9 @@ public class SorL extends javax.swing.JFrame {
 
     public static void checkdb(){
         try { w=1;
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query1 = "SELECT * FROM registration WHERE name = '"+un+"' and email = '"+em+"'";
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -313,9 +313,9 @@ public class SorL extends javax.swing.JFrame {
               
         try {
             int n=0,p=0 ;
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query1 = "SELECT * FROM registration WHERE name = '"+username+"' and password = '"+password+"'";
             
             Class.forName("com.mysql.jdbc.Driver");

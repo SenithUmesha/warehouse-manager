@@ -328,9 +328,9 @@ public class SignIn extends javax.swing.JFrame {
     public static void checkdb(){
         try {
             
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query1 = "SELECT * FROM registration WHERE nic = '"+nic+"'";
             String query2 = "SELECT * FROM registration WHERE email = '"+email+"'";
             

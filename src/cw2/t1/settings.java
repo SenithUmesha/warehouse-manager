@@ -479,9 +479,9 @@ public class settings extends javax.swing.JInternalFrame {
     private void btnviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewActionPerformed
         // TODO add your handling code here:         
         try{
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query = "SELECT * FROM registration WHERE nic = '"+Interface1.keynic+"'";
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -557,9 +557,9 @@ public class settings extends javax.swing.JInternalFrame {
 
     public static void checkdb(){
         try{
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query = "SELECT * FROM registration WHERE nic = '"+Interface1.keynic+"'";
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -588,9 +588,9 @@ public class settings extends javax.swing.JInternalFrame {
      
     public static void db(){
         try{
-        String url ="jdbc:mysql://localhost:3306/wms";
-        String uname ="root";
-        String pass ="18765121";
+        String url = AppConfig.dbUrl();
+        String uname = AppConfig.dbUser();
+        String pass = AppConfig.dbPassword();
         String query = "UPDATE registration SET name = '"+iname+"', city = '"+icity+"', password = '"+ipassword+"', contact_num = '"+icn+"' WHERE nic = '"+Interface1.keynic+"' ";
 
         Class.forName("com.mysql.jdbc.Driver");

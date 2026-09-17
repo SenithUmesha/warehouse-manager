@@ -335,9 +335,9 @@ public class Interface1 extends javax.swing.JFrame {
     public static void getkey(){        
         try {
             
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query = "SELECT * FROM registration WHERE name = '"+SorL.username+"'";
             
             Class.forName("com.mysql.jdbc.Driver");

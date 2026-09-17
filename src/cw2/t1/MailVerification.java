@@ -45,7 +45,7 @@ public class MailVerification extends javax.swing.JFrame {
      */
     public MailVerification() throws MessagingException {
         initComponents(); 
-        r = ThreadLocalRandom.current().nextInt();
+        r = ThreadLocalRandom.current().nextInt(100000, 1000000);
         SendMail(SignIn.email);
         System.out.println("Sent");
     }
@@ -273,9 +273,9 @@ public class MailVerification extends javax.swing.JFrame {
         int M = Integer.parseInt(SignIn2.M);
         int S = Integer.parseInt(SignIn2.S);
         
-        String url ="jdbc:mysql://localhost:3306/wms";
-        String uname ="root";
-        String pass ="18765121";
+        String url = AppConfig.dbUrl();
+        String uname = AppConfig.dbUser();
+        String pass = AppConfig.dbPassword();
         String query1 = "insert into registration values('"+SignIn.name+"','"+SignIn.nic+"','"+SignIn.city+"','"+SignIn.email+"','"+SignIn.password+"',"+contactnum+")";
         String query2 = "insert into warehouse_req values('"+SignIn2.package1+"',"+L+","+M+","+S+",'"+SignIn2.duration+"','"+SignIn.nic+"')";
         
@@ -299,8 +299,8 @@ public class MailVerification extends javax.swing.JFrame {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
         
-        String myemail="senithumeshac@gmail.com";
-        String mypassword="senithumeshac#";
+        String myemail = AppConfig.smtpUser();
+        String mypassword = AppConfig.smtpPassword();
         
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override

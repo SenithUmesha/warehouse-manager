@@ -41,9 +41,9 @@ public class dashboard extends javax.swing.JInternalFrame {
 
     public void getvaluesdb(){
         try {
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query = "SELECT * FROM warehouse_req WHERE nic = '"+Interface1.keynic+"'";
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -108,7 +108,7 @@ public class dashboard extends javax.swing.JInternalFrame {
         pchart.setPreferredSize(new java.awt.Dimension(213, 213));
         pchart.setLayout(new java.awt.BorderLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Downloads\\male_user_50px.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cw2/t1/male_user_50px.png"))); // NOI18N
 
         lblwel.setFont(new java.awt.Font("Consolas", 0, 24)); // NOI18N
         lblwel.setForeground(new java.awt.Color(0, 0, 0));

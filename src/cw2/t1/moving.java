@@ -328,9 +328,9 @@ public class moving extends javax.swing.JInternalFrame {
     private void btnview1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnview1ActionPerformed
         // TODO add your handling code here:
         try{
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query = "SELECT * FROM warehouse_req WHERE nic = '"+Interface1.keynic+"'";
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -376,9 +376,9 @@ public class moving extends javax.swing.JInternalFrame {
     private void btnview2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnview2ActionPerformed
         // TODO add your handling code here:
         try {
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query = "SELECT * FROM other_branches" ;
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -406,9 +406,9 @@ public class moving extends javax.swing.JInternalFrame {
 
     public static void updatedb(){
         try{
-        String url ="jdbc:mysql://localhost:3306/wms";
-        String uname ="root";
-        String pass ="18765121";
+        String url = AppConfig.dbUrl();
+        String uname = AppConfig.dbUser();
+        String pass = AppConfig.dbPassword();
         String query = "UPDATE warehouse_req SET crates_l = '"+fl+"', crates_m = '"+fm+"', crates_s = '"+fs+"'";
 
         Class.forName("com.mysql.jdbc.Driver");
@@ -441,9 +441,9 @@ public class moving extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
         try {
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query1 = "SELECT * FROM moving WHERE nic = '"+Interface1.keynic+"'";
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -467,9 +467,9 @@ public class moving extends javax.swing.JInternalFrame {
         }
         else{
                 try {
-            String url ="jdbc:mysql://localhost:3306/wms";
-            String uname ="root";
-            String pass ="18765121";
+            String url = AppConfig.dbUrl();
+            String uname = AppConfig.dbUser();
+            String pass = AppConfig.dbPassword();
             String query = "SELECT * FROM warehouse_req WHERE nic = '"+Interface1.keynic+"'";
             
             Class.forName("com.mysql.jdbc.Driver");
@@ -511,9 +511,9 @@ public class moving extends javax.swing.JInternalFrame {
                 }
                
                 try {
-                    String url ="jdbc:mysql://localhost:3306/wms";
-                    String uname ="root";
-                    String pass ="18765121";
+                    String url = AppConfig.dbUrl();
+                    String uname = AppConfig.dbUser();
+                    String pass = AppConfig.dbPassword();
                     String query = "insert into moving values('"+address+"','"+Interface1.keynic+"','"+trans+"','"+ml+"','"+mm+"',"+ms+")";
                     Class.forName("com.mysql.jdbc.Driver");    
                     Connection connection = DriverManager.getConnection(url, uname, pass);

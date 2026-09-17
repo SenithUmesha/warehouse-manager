@@ -29,7 +29,7 @@ public class passrec extends javax.swing.JFrame {
     public passrec() throws MessagingException {
         initComponents();
         pnewpass.setVisible(false);
-        r = ThreadLocalRandom.current().nextInt();
+        r = ThreadLocalRandom.current().nextInt(100000, 1000000);
         SendMail(SorL.em);
         System.out.println("Sent");
     }
@@ -56,8 +56,8 @@ public class passrec extends javax.swing.JFrame {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
         
-        String myemail="senithumeshac@gmail.com";
-        String mypassword="senithumeshac#";
+        String myemail = AppConfig.smtpUser();
+        String mypassword = AppConfig.smtpPassword();
         
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
@@ -324,9 +324,9 @@ public class passrec extends javax.swing.JFrame {
 
     public static void updatedb(){
         try{
-        String url ="jdbc:mysql://localhost:3306/wms";
-        String uname ="root";
-        String pass ="18765121";
+        String url = AppConfig.dbUrl();
+        String uname = AppConfig.dbUser();
+        String pass = AppConfig.dbPassword();
         String query = "UPDATE registration SET password = '"+conpass+"' where name = '"+SorL.username+"'";
 
         Class.forName("com.mysql.jdbc.Driver");
