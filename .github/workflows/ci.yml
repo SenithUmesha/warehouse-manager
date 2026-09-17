@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Java 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "8"
+
+      - name: Install Ant
+        run: sudo apt-get update && sudo apt-get install -y ant
+
+      - name: Build NetBeans Ant project
+        run: ant -noinput clean jar
+
+      - name: Guard current source against literal password configuration
+        run: |
+          if grep -R -nE 'String[[:space:]]+(pass|mypassword)[[:space:]]*=[[:space:]]*"[^\"]+"' src/cw2/t1 --include='*.java'; then
+            echo 'Literal password-like configuration found in Java source.'
+            exit 1
+          fi
+
+      - name: Guard generated output from being recommitted
+        run: |
+          test ! -d nbproject/private
