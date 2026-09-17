@@ -1,0 +1,46 @@
+name: One-shot legacy cleanup
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout full working tree
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sanitize historical source configuration
+        run: python scripts/legacy_cleanup.py
+
+      - name: Remove generated and machine-local files
+        run: |
+          git rm -r --ignore-unmatch build dist nbproject/private
+          git rm --ignore-unmatch scripts/legacy_cleanup.py .github/workflows/one-shot-cleanup.yml
+
+      - name: Verify current source contains no historical credential literals
+        run: |
+          if grep -R -nE 'String[[:space:]]+(pass|mypassword)[[:space:]]*=[[:space:]]*"[^\"]+"' src/cw2/t1 --include='*.java'; then
+            echo 'A literal password-like value is still present in Java source.'
+            exit 1
+          fi
+
+      - name: Commit cleaned tree
+        run: |
+          git config user.name "Senith Umesha"
+          git config user.email "90299964+SenithUmesha@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to commit"
+            exit 0
+          fi
+          git commit -m "chore: sanitize legacy config and generated artifacts"
+          git push origin HEAD:master
